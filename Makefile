@@ -11,18 +11,20 @@
 # **************************************************************************** #
 
 all:
-	make -C p_swap/
+	@make -C libft/
+	@make -C p_swap/
 
 clean:
-	make clean -C p_swap/
+	@make clean -C libft/
+	@make clean -C p_swap/
 
 fclean:
-	make fclean -C p_swap/	
+	@make fclean -C libft/
+	@make fclean -C p_swap/	
 
-re:
-	make re -C p_swap/
+re: fclean all
 
 again: re
-	make clean
+	@make clean
 
 .PHONY : all, re, clean, fclean, again

@@ -31,8 +31,7 @@ FLAGS = -Wall -Wextra -Werror -g
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make re -C ../libft/
-	gcc $(FLAGS) $(INC) $(OBJ) $(LIB) -o $(NAME)
+	@gcc $(FLAGS) $(INC) $(OBJ) $(LIB) -o $(NAME)
 
 $(OBJ):
 	@$(CC) $(FLAGS) -c $(SRC_POS)
