@@ -13,17 +13,13 @@ typedef struct      s_node
     struct s_node   *next;
 }                   t_node;
 
-struct listp
+typedef struct      s_listp
 {
     struct s_node   *list_a;
     struct s_node   *list_b;
-    int             top_a;
-    int             top_b;
-    int             tail_a;
-    int             tail_b;
-};
+}                   t_listp;
 
-void    freelist(t_node **list);
-void    pushnode(t_node **node, char **c_nbr);
+void    freelist(t_listp *lists);
+void    pushnode(t_listp *lists, char **c_nbr);
 
 #endif

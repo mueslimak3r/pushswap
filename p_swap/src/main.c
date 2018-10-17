@@ -17,7 +17,7 @@ int				check_nodes(t_node **current)
 	return (0);
 }
 
-t_node			*ft_bubblesort(t_node **top)
+void			ft_bubblesort(t_listp *lists)
 {
 	int			swap;
 	t_node		*current;
@@ -26,7 +26,7 @@ t_node			*ft_bubblesort(t_node **top)
 	swap = 1;
 	while (swap == 1)
 	{
-		current = *top;
+		current = lists->list_a;
 		swap = 0;
 		while (current->next)
 		{
@@ -38,45 +38,37 @@ t_node			*ft_bubblesort(t_node **top)
 			current = current->next;
 		}
 	}
-	return (*top);
 }
 
-struct listp	initstruct(void)
+t_listp			initstruct(void)
 {
-	struct listp	lists;
+	t_listp		lists;
 
 	lists.list_a = NULL;
 	lists.list_b = NULL;
-	lists.top_a = 0;
-	lists.top_b = 0;
-	lists.tail_a = 0;
-	lists.tail_b = 0;
 	return (lists);
 }
 
 int     		main(int ac, char **av)
 {
 	int				i;
-	//struct listp	lists;
-	t_node			*list;
-	t_node			*top;
+	t_listp			lists;
 
-	//lists = initstruct();
-	list = NULL;
+	lists = initstruct();
 	i = 1;
 	if (ac > 1)
 	{
 		while (av[i])
-			pushnode(&list, &av[i++]);
-		top = ft_bubblesort(&list);
-		while (list)
+			pushnode(&lists, &av[i++]);
+		ft_bubblesort(&lists);
+		while (lists.list_a)
 		{
-			printf ("%d", list->nb);
-			if (list->next)
+			printf ("%d", lists.list_a->nb);
+			if (lists.list_a->next)
 				printf(" ");
-			list = list->next;
+			lists.list_a = lists.list_a->next;
 		}
-		freelist(&top);
+		freelist(&lists);
 		printf("\n");
 	}
 	else
