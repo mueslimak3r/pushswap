@@ -21,5 +21,8 @@ typedef struct      s_listp
 
 void    freelist(t_listp *lists);
 void    pushnode(t_listp *lists, char **c_nbr);
+int		check_nodes(t_node **current);
+t_node	*swapnodes(t_node **list, t_node **next);
+t_listp	initstruct(void);
 
 #endif
