@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcase.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: calamber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 15:57:29 by calamber          #+#    #+#             */
-/*   Updated: 2018/04/29 23:18:51 by calamber         ###   ########.fr       */
+/*   Created: 2018/12/04 22:44:43 by calamber          #+#    #+#             */
+/*   Updated: 2018/12/04 22:45:19 by calamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *s)
+char		*ft_strcase(char *str, char format)
 {
-	int	i;
+	char	*ret;
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
+	if (!str)
+		return (NULL);
+	ret = str;
+	while (*str)
 	{
-		i++;
+		if (format >= 'a' && format <= 'z')
+			*str = ft_toupper(*str);
+		else
+			*str = ft_tolower(*str);
+		str++;
 	}
-	return (i);
+	return (ret);
 }

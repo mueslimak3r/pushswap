@@ -10,20 +10,37 @@
 #                                                                              #
 # **************************************************************************** #
 
-all:
-	@make -C libft/
-	@make -C p_swap/
-	@make -C checkr/
+NAME = ../checker
+
+SRC = main.c lists.c
+
+OBJ = $(SRC:.c=.o)
+
+SRC_PATH = src/
+
+SRC_POS = $(addprefix $(SRC_PATH),$(SRC))
+
+LIB = ../libft/libft.a
+
+INC = -I ../includes/
+
+CC = gcc
+
+FLAGS = -Wall -Wextra -Werror -g
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	@gcc $(FLAGS) $(INC) $(OBJ) $(LIB) -o $(NAME)
+
+$(OBJ):
+	@$(CC) $(FLAGS) -c $(SRC_POS)
 
 clean:
-	@make clean -C libft/
-	@make clean -C p_swap/
-	@make clean -C checkr/
+	@rm -f $(OBJ)
 
-fclean:
-	@make fclean -C libft/
-	@make fclean -C p_swap/
-	@make fclean -C checkr/
+fclean: clean
+	@rm -f $(NAME)
 
 re: fclean all
 

@@ -6,15 +6,17 @@
 /*   By: calamber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:24:04 by calamber          #+#    #+#             */
-/*   Updated: 2018/05/07 16:35:16 by calamber         ###   ########.fr       */
+/*   Updated: 2018/12/04 22:36:46 by calamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "ft_printf/includes/ft_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
+# define BUFF_SIZE 1
 
 typedef struct		s_list
 {
@@ -34,7 +36,7 @@ size_t				ft_strlen(const char *s);
 char				*ft_strdup(char *src);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncpy(char *str, const char *src, size_t len);
-char				*ft_strcat(char *restrict s1, const char *restrict s2);
+char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strncat(char *s1, const char *s2, size_t n);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 char				*ft_strchr(const char *s, int c);
@@ -66,7 +68,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
-char				*ft_itoa(int n);
+char				*ft_itoa(long long nbr);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
@@ -78,9 +80,13 @@ void				ft_putnbr_fd(int n, int fd);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstadd(t_list **alst, t_list *new);
+void				ft_lstadd(t_list **alst, t_list *n);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_wordcnt(const char *t, char c);
+int					ft_isupper(char c);
+char				*ft_strcase(char *str, char format);
+char				*ft_itoa_base(long long value, int base);
+int					get_next_line(const int fd, char **line);
 
 #endif

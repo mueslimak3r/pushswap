@@ -10,10 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME := libft.a
 CC = gcc
 INCLUDE = libft.h
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c \
@@ -26,26 +25,21 @@ ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c \
 ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c \
 ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c \
 ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
-ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_cntwords.c
+ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_cntwords.c ft_isupper.c \
+ft_strcase.c ft_itoa_base.c get_next_line.c
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ) $(INC)
-	@ranlib $(NAME)
-
-$(OBJ):
+all:
 	@$(CC) $(FLAGS) -c $(SRC)
+	@make -C ft_printf
 
 clean:
 	@rm -f $(OBJ)
 
-fclean: clean
-	@rm -rf $(NAME)
+fclean:
+	@make fclean -C ft_printf
 
 re: fclean all
-	@rm -f $(OBJ)
 
 .PHONY: all clean fclean re

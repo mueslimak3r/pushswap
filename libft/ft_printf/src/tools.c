@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: calamber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 15:57:29 by calamber          #+#    #+#             */
-/*   Updated: 2018/04/29 23:18:51 by calamber         ###   ########.fr       */
+/*   Created: 2018/09/17 11:28:25 by calamber          #+#    #+#             */
+/*   Updated: 2018/10/01 22:03:58 by calamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t		ft_strlen(const char *s)
+int			ischar(char c)
 {
-	int	i;
+	if (c >= 'a' && c <= 'z')
+		return (1);
+	else if (c >= 'A' && c <= 'Z')
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+int			isflag(char c)
+{
+	if (c == 's' || c == 'c' || c == 'd' || c == 'i' ||
+			c == 'p' || c == 'o' || c == 'u' || c == 'x' || c == '%' ||
+				c == 'X' || c == 'f')
+		return (1);
+	return (0);
 }

@@ -1,4 +1,4 @@
-#include "../includes/p_swap.h"
+#include "../includes/checkr.h"
 
 void			pushnode(t_listp *lists, char *c_nbr)
 {
@@ -51,15 +51,11 @@ void			initstruct(t_listp *lists)
 
 void			swapnodes(t_node **list, t_node *next)
 {
-	//printf("a: %d an: %d al: %d i: %d\n", (*list)->nb, (*list)->next->nb, (*list)->last->nb, i);
-	//printf("b: %d bn: %d bl: %d i: %d\n", (next)->nb, (next)->next->nb, (next)->last->nb, i);
 	(*list)->next = next->next;
 	(next)->next = *list;
 	(next)->last = (*list)->last;
 	(*list)->last->next = next;
 	(*list)->last = next;
-	//printf("a: %d an: %d al: %d i: %d\n", (*list)->nb, (*list)->next->nb, (*list)->last->nb, i);
-	//printf("b: %d bn: %d bl: %d i: %d\n", (next)->nb, (next)->next->nb, (next)->last->nb, i);
 }
 
 int				check_nodes(t_node **current)
