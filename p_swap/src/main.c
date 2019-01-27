@@ -2,10 +2,9 @@
 
 void			printa(t_node *a, int size)
 {
-	ft_printf("size: %d\n", size);
 	while (a && size > 0)
 	{
-		ft_printf("    %d\n", a->nb);
+		ft_printf(((size != 1) ? ("%-4d") : ("%-4d\n")), a->nb);
 		a = a->next;
 		size--;
 	}
@@ -21,8 +20,11 @@ int				checkargs(int ac, char **av, t_flags *f)
 		ft_printf("Error\n");
 		return (0);
 	}
-	if (av[i][0] == 'v' && !av[i][1])
+	if (ft_strequ("-v", av[i]))
+	{
 		f->v = 1;
+		i++;
+	}
 	while (av[i])
 	{
 		if (ft_atoi(av[i]) == 0 && !(ft_strequ("0", av[i])))
