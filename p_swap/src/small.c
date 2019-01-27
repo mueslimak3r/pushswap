@@ -11,7 +11,7 @@ void			small_sort(t_listp *lists, t_flags *f)
 	if (!(lists->list_a))
 		return ;
 	a = lists->list_a;
-    printa(a, lists->count_a);
+    //printa(a, lists->count_a);
 	while (count > 0)
 	{
 		count = 0;
@@ -43,5 +43,5 @@ void			small_sort(t_listp *lists, t_flags *f)
 		a = a->next;
 		ft_printf("ra\n");
 	}
-    printa(a, lists->count_a);
+    //printa(a, lists->count_a);
 }

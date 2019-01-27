@@ -26,7 +26,7 @@ typedef struct      s_listp
 
 }                   t_listp;
 
-void    freelist(t_listp *lists);
+void	freelist(int size, t_node **head);
 void    pushnode(t_listp *lists, char *c_nbr);
 int		check_nodes(t_node **current);
 void    swapnodes(t_node **list, t_node *next);

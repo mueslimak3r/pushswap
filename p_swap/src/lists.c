@@ -28,7 +28,7 @@ void	freelist(int size, t_node **head)
 			swap->next = 0;
 			swap->last = 0;
 			free (swap);
-			ft_printf("Done!\n");
+			//ft_printf("Done!\n");
 		}
 		size--;
 	}

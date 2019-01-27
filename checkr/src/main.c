@@ -91,7 +91,8 @@ int                 main(int ac, char **av)
 		lists.list_a->last = lists.tail_a;
 		lists.tail_a->next = lists.list_a;
 		checkrsort(&lists);
-		freelist(&lists);
+		freelist(lists.count_a, &(lists.list_a));
+		freelist(lists.count_b, &(lists.list_b));
 		return (0);
 	}
 }
