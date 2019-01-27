@@ -7,6 +7,8 @@
 # include <stdlib.h>
 # include "../../libft/libft.h"
 
+//typedef void (sortit)(t_listp *)(t_fl *);
+
 typedef struct      s_node
 {
     int             nb;
@@ -14,10 +16,11 @@ typedef struct      s_node
     struct s_node   *last;
 }                   t_node;
 
-typedef struct      s_f
+typedef struct      s_flags
 {
     int             v;
-}                   t_f;
+    int             standrd;
+}                   t_flags;
 
 typedef struct      s_listp
 {
@@ -30,10 +33,12 @@ typedef struct      s_listp
 
 }                   t_listp;
 
-void    freelist(t_listp *lists);
+void    freelist(int size, t_node **head);
 void    pushnode(t_listp *lists, char *c_nbr);
 int		check_nodes(t_node **current);
 void    swapnodes(t_node **list, t_node *next);
-void	initstruct(t_listp *lists, t_f *f);
+void	initstruct(t_listp *lists, t_flags *f);
+void    small_sort(t_listp *lists, t_flags *f);
+void    printa(t_node *a, int size);
 
 #endif

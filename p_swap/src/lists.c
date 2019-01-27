@@ -14,32 +14,27 @@ void			pushnode(t_listp *lists, char *c_nbr)
 	lists->list_a = new;
 }
 
-void	freelist(t_listp *lists)
+void	freelist(int size, t_node **head)
 {
 	t_node *swap;
 
 	swap = NULL;
-	while (lists->list_a)
+	while (*head && size > 0)
 	{
-		swap = lists->list_a;
-		lists->list_a = lists->list_a->next;
-		swap->next = 0;
-		swap->last = 0;
-		free (swap);
+		if (*head)
+		{
+			swap = *head;
+			*head = (*head)->next;
+			swap->next = 0;
+			swap->last = 0;
+			free (swap);
+			ft_printf("Done!\n");
+		}
+		size--;
 	}
-	while (lists->list_b)
-	{
-		swap = lists->list_b;
-		lists->list_b = lists->list_b->next;
-		swap->next = 0;
-		swap->last = 0;
-		free (swap);
-	}
-	lists->tail_a = 0;
-	lists->tail_b = 0;
 }
 
-void			initstruct(t_listp *lists, t_f *f)
+void			initstruct(t_listp *lists, t_flags *f)
 {
 	lists->list_a = 0;
 	lists->list_b = 0;
@@ -48,6 +43,7 @@ void			initstruct(t_listp *lists, t_f *f)
 	lists->count_a = 0;
 	lists->count_b = 0;
 	f->v = 0;
+	f->standrd = 0;
 }
 
 void			swapnodes(t_node **list, t_node *next)
