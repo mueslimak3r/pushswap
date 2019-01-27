@@ -4,7 +4,7 @@ void			printa(t_node *a)
 {
 	while (a)
 	{
-		printf("%d\n", a->nb);
+		ft_printf("%d\n", a->nb);
 		if (a->nb == a->next->nb || a->nb > a->next->nb)
 			break ;
 		a = a->next;
@@ -27,9 +27,9 @@ void				checksolve(t_node *a, int count_a)
 	}
 	a = a->next;
 	if (count == 0)
-		printf("OK\n");
+		ft_printf("OK\n");
 	else
-		printf("KO\n");
+		ft_printf("KO\n");
 }
 
 void				checkrsort(t_listp *lists)
@@ -39,7 +39,7 @@ void				checkrsort(t_listp *lists)
 	args = 0;
 	while (get_next_line(0, &args))
 	{
-		printf("%s\n", args);
+		ft_printf("%s\n", args);
 		if (ft_strequ("ra", args))
 			lists->list_a = lists->list_a->next;
 		else if (ft_strequ("sa", args))
@@ -59,14 +59,14 @@ int				    checkargs(int ac, char **av)
 	i = 1;
 	if (ac < 2)
 	{
-		write(2, "Error\n", 29);
+		ft_printf("Error\n");
 		return (0);
 	}
 	while (av[i])
 	{
 		if (ft_atoi(av[i]) == 0 && !(ft_strequ("0", av[i])))
 		{
-			write(2, "Error\n", 29);
+			ft_printf("Error\n");
 			return (0);
 		}
 		i++;

@@ -39,7 +39,7 @@ void	freelist(t_listp *lists)
 	lists->tail_b = 0;
 }
 
-void			initstruct(t_listp *lists)
+void			initstruct(t_listp *lists, t_f *f)
 {
 	lists->list_a = 0;
 	lists->list_b = 0;
@@ -47,19 +47,16 @@ void			initstruct(t_listp *lists)
 	lists->tail_b = 0;
 	lists->count_a = 0;
 	lists->count_b = 0;
+	f->v = 0;
 }
 
 void			swapnodes(t_node **list, t_node *next)
 {
-	//printf("a: %d an: %d al: %d i: %d\n", (*list)->nb, (*list)->next->nb, (*list)->last->nb, i);
-	//printf("b: %d bn: %d bl: %d i: %d\n", (next)->nb, (next)->next->nb, (next)->last->nb, i);
 	(*list)->next = next->next;
 	(next)->next = *list;
 	(next)->last = (*list)->last;
 	(*list)->last->next = next;
 	(*list)->last = next;
-	//printf("a: %d an: %d al: %d i: %d\n", (*list)->nb, (*list)->next->nb, (*list)->last->nb, i);
-	//printf("b: %d bn: %d bl: %d i: %d\n", (next)->nb, (next)->next->nb, (next)->last->nb, i);
 }
 
 int				check_nodes(t_node **current)
