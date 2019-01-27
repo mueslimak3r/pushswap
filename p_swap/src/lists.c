@@ -28,7 +28,7 @@ void	freelist(int size, t_node **head)
 			swap->next = 0;
 			swap->last = 0;
 			free (swap);
-			//ft_printf("Done!\n");
+			ft_printf("Done!\n");
 		}
 		size--;
 	}
@@ -44,6 +44,8 @@ void			initstruct(t_listp *lists, t_flags *f)
 	lists->count_b = 0;
 	f->v = 0;
 	f->standrd = 0;
+	f->count_a = 0;
+	f->count_b = 0;
 }
 
 void			swapnodes(t_node **list, t_node *next)

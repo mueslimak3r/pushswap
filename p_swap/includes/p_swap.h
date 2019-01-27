@@ -20,6 +20,8 @@ typedef struct      s_flags
 {
     int             v;
     int             standrd;
+    int             count_a;
+    int             count_b;
 }                   t_flags;
 
 typedef struct      s_listp
@@ -40,5 +42,6 @@ void    swapnodes(t_node **list, t_node *next);
 void	initstruct(t_listp *lists, t_flags *f);
 void    small_sort(t_listp *lists, t_flags *f);
 void    printa(t_node *a, int size);
+void    pushb(t_node **a, t_node **b, t_flags *f);
 
 #endif
