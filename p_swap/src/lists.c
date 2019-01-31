@@ -5,6 +5,7 @@ void			pushnode(t_listp *lists, char *c_nbr)
 	t_node		*new;
 
 	if (!(new = (t_node *)malloc(sizeof(t_node))))
+	
 		return ;
 	new->nb = ft_atoi(c_nbr);
 	new->next = lists->list_a;
@@ -38,8 +39,6 @@ void			initstruct(t_listp *lists, t_flags *f)
 {
 	lists->list_a = 0;
 	lists->list_b = 0;
-	lists->tail_a = 0;
-	lists->tail_b = 0;
 	lists->count_a = 0;
 	lists->count_b = 0;
 	f->v = 0;

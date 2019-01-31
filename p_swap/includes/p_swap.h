@@ -28,8 +28,6 @@ typedef struct      s_listp
 {
     struct s_node   *list_a;
     struct s_node   *list_b;
-    struct s_node   *tail_a;
-    struct s_node   *tail_b;
     int             count_a;
     int             count_b;
 

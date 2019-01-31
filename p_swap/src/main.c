@@ -55,12 +55,8 @@ int     		main(int ac, char **av)
 		}
 		if (*(++av))
 		{
-			pushnode(&lists, *(av++));
-			lists.tail_a = lists.list_a;
 			while (*av)
 				pushnode(&lists, *(av++));
-			lists.list_a->last = lists.tail_a;
-			lists.tail_a->next = lists.list_a;
 			small_sort(&lists, &f);
 			freelist(lists.count_a, &(lists.list_a));
 			freelist(lists.count_b, &(lists.list_b));
