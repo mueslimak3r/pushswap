@@ -23,7 +23,6 @@ void			fill_b(t_node **a, t_node **b, t_flags *f)
 				ft_printf("        ");
 				printa((*a)->last, f->count_a);
 			}
-			*a = (*a)->last;
 			ft_printf("\n");
 		}
 		i++;
@@ -48,9 +47,9 @@ void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 		head = *a;
 		count = 0;
 		i = 0;
-		while (i < f->count_a - 1)
+		while (head)
 		{
-			if ((head)->nb > (head)->next->nb)
+			if (head && head->next && (head)->nb > (head)->next->nb)
 			{
 				count += 1;
 				ft_printf("sa");
@@ -65,11 +64,10 @@ void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 					ft_printf("        ");
 					printa(head->last, f->count_a);
 				}
-				head = head->last;
 				ft_printf("\n");
 			}
 			i++;
-			head = (head)->next;
+			//head = (head)->next;
 			ft_printf("ra\n");
 		}
 		ft_printf("ra\n");
