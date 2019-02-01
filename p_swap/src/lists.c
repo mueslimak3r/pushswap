@@ -8,7 +8,7 @@ void			pushnode(t_listp *lists, char *c_nbr)
 		return ;
 	new->nb = ft_atoi(c_nbr);
 	new->next = lists->list_a;
-	lists->list_a->last = 0;
+	new->last = 0;
 	if (lists->list_a)
 		lists->list_a->last = new;
 	lists->count_a += 1;
@@ -55,7 +55,6 @@ void			swapnodes(t_node **list, t_node *next)
 	if ((*list)->last && next)
 		(*list)->last->next = next;
 	(*list)->last = next;
-	//*list = next;
 }
 
 int				check_nodes(t_node **current)

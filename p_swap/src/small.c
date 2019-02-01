@@ -6,7 +6,9 @@ void			fill_b(t_node **a, t_node **b, t_flags *f)
 
 	i = 0;
 	if (*b)
+	{
 		;
+	}
 	while (i < f->count_a - 1)
 	{
 		if ((*a)->nb > (*a)->next->nb)
@@ -40,7 +42,9 @@ void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 	i = 0;
 	count = 1;
 	if (*b)
+	{
 		;
+	}
 	head = *a;	
 	while (count > 0)
 	{
@@ -67,7 +71,7 @@ void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 				ft_printf("\n");
 			}
 			i++;
-			//head = (head)->next;
+			head = (head)->next;
 			ft_printf("ra\n");
 		}
 		ft_printf("ra\n");
