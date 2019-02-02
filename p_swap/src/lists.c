@@ -55,6 +55,7 @@ void			swapnodes(t_node **list, t_node *next)
 	if ((*list)->last && next)
 		(*list)->last->next = next;
 	(*list)->last = next;
+	*list = next;
 }
 
 int				check_nodes(t_node **current)

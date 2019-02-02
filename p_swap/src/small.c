@@ -33,6 +33,22 @@ void			fill_b(t_node **a, t_node **b, t_flags *f)
 	}
 }
 
+int				checksort(t_node *head)
+{
+	int			count;
+
+	count = 0;
+	while (head && head->next)
+	{
+		if ((head)->nb > (head)->next->nb)
+			count += 1;
+		head = head->next;
+	}
+	if (count == 0)
+		return (1);
+	return (0);
+}
+
 void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 {
 	int			count;
@@ -45,13 +61,12 @@ void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 	{
 		;
 	}
-	head = *a;	
-	while (count > 0)
+	head = *a;
+	while (count > 0 && !(checksort(head)))
 	{
-		head = *a;
 		count = 0;
 		i = 0;
-		while (head)
+		while (head && i < f->count_a)
 		{
 			if (head && head->next && (head)->nb > (head)->next->nb)
 			{
@@ -66,15 +81,13 @@ void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 				if (f->v)
 				{
 					ft_printf("        ");
-					printa(head->last, f->count_a);
+					printa(head, f->count_a);
 				}
 				ft_printf("\n");
 			}
 			i++;
-			head = (head)->next;
-			ft_printf("ra\n");
+			rotate_a(&head, head);
 		}
-		ft_printf("ra\n");
 	}
 }
 
@@ -89,7 +102,8 @@ void			small_sort(t_listp *lists, t_flags *f)
 	f->count_b = lists->count_b;
 	a = lists->list_a;
 	b = lists->list_b;
-	do_smallsort(&a, &b, f);
+	ft_printf("counta: %d\n", f->count_a);
+	//do_smallsort(&a, &b, f);
 	printa(a, f->count_a);
 	lists->count_a = f->count_a;
 	lists->count_b = f->count_b;

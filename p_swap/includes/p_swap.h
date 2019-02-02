@@ -41,5 +41,6 @@ void	initstruct(t_listp *lists, t_flags *f);
 void    small_sort(t_listp *lists, t_flags *f);
 void    printa(t_node *a, int size);
 void    pushb(t_node **a, t_node **b, t_flags *f);
+void	rotate_a(t_node **head, t_node *headp);
 
 #endif
