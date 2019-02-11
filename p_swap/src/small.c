@@ -62,7 +62,7 @@ void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 		;
 	}
 	head = *a;
-	while (count > 0 && !(checksort(head)))
+	while (count > 0)
 	{
 		count = 0;
 		i = 0;
@@ -74,19 +74,22 @@ void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 				ft_printf("sa");
 				if (f->v)
 				{
-					ft_printf("      ");
+					ft_printf("  ");
 					printa(head, f->count_a);
 				}
 				swapnodes(&head, head->next);
 				if (f->v)
 				{
-					ft_printf("        ");
+					ft_printf("    ");
 					printa(head, f->count_a);
 				}
 				ft_printf("\n");
 			}
 			i++;
-			rotate_a(&head, head);
+			if (checksort(head))
+				break ;
+			else
+				rotate_a("ra", &head, head, f);
 		}
 	}
 }
@@ -103,7 +106,7 @@ void			small_sort(t_listp *lists, t_flags *f)
 	a = lists->list_a;
 	b = lists->list_b;
 	ft_printf("counta: %d\n", f->count_a);
-	//do_smallsort(&a, &b, f);
+	do_smallsort(&a, &b, f);
 	printa(a, f->count_a);
 	lists->count_a = f->count_a;
 	lists->count_b = f->count_b;

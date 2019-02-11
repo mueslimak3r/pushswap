@@ -47,17 +47,6 @@ void			initstruct(t_listp *lists, t_flags *f)
 	f->count_b = 0;
 }
 
-void			swapnodes(t_node **list, t_node *next)
-{
-	(*list)->next = next->next;
-	(next)->next = *list;
-	(next)->last = (*list)->last;
-	if ((*list)->last && next)
-		(*list)->last->next = next;
-	(*list)->last = next;
-	*list = next;
-}
-
 int				check_nodes(t_node **current)
 {
 	if ((*current)->nb > (*current)->next->nb)
