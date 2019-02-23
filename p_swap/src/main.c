@@ -37,27 +37,49 @@ int				checkargs(int ac, char **av, t_flags *f)
 	return (1);
 }
 
+void			checksort(char **av, t_listp *lists, t_flags *f, int c)
+{
+	t_node		*a;
+	t_node		*b;
+
+	while (c > 1 && av[c - 1])
+	{
+		pushnode(lists, av[c - 1]);
+		c--;
+	}
+	if (!(lists->list_a))
+		return ;
+	f->count_a = lists->count_a;
+	f->count_b = lists->count_b;
+	a = lists->list_a;
+	b = lists->list_b;
+	if (c <= 5)
+		;//	do_smallsort(&a, &b, f);
+	printa(a, f->count_a);
+	lists->count_a = f->count_a;
+	lists->count_b = f->count_b;
+}
+
 int     		main(int ac, char **av)
 {
 	t_listp			lists;
-	t_flags				f;
+	t_flags			f;
+	int			count;
 
+	count = 1;
 	initstruct(&lists, &f);
 	if (checkargs(ac, av, &f))
 	{
 		if (f.v)
 		{
-			ft_printf("Push Swap by calamber\n\nSyntax of -v ");
-			ft_printf("mode:\ncommand      list a            ");
-			ft_printf("list b\n       list before operation\n");
-			ft_printf("       list after operation\n");
-			av++;
+			print_vflag_greeting();
+			count++;
 		}
-		if (*(++av))
+		if (av[count])
 		{
-			while (*av)
-				pushnode(&lists, *(av++));
-			small_sort(&lists, &f);
+			while (av[count])
+				count++;
+			checksort(av, &lists, &f, count);
 			freelist(lists.count_a, &(lists.list_a));
 			freelist(lists.count_b, &(lists.list_b));
 			return (0);

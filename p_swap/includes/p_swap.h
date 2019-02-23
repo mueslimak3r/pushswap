@@ -38,10 +38,10 @@ void    pushnode(t_listp *lists, char *c_nbr);
 int		check_nodes(t_node **current);
 void    swapnodes(t_node **list, t_node *next);
 void	initstruct(t_listp *lists, t_flags *f);
-void    small_sort(t_listp *lists, t_flags *f);
 void    printa(t_node *a, int size);
 void    pushb(char *note, t_node **a, t_node **b, t_flags *f);
 void	rotate_a(char *n, t_node **h, t_node *hp, t_flags *f);
 void	rev_rotate_a(char *note, t_node **head, t_node *headp);
+void    print_vflag_greeting(void);
 
 #endif

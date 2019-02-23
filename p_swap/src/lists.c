@@ -53,3 +53,11 @@ int				check_nodes(t_node **current)
 		return (1);
 	return (0);
 }
+
+void			print_vflag_greeting(void)
+{
+	ft_printf("Push Swap by calamber\n\nSyntax of -v ");
+	ft_printf("mode:\ncommand      list a            ");
+	ft_printf("list b\n       list before operation\n");
+	ft_printf("       list after operation\n");
+}
