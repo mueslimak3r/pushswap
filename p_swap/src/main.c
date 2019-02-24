@@ -20,10 +20,11 @@ int				checkargs(int ac, char **av, t_flags *f)
 		ft_printf("Error\n");
 		return (0);
 	}
-	if (ft_strequ("-v", av[i]))
+	if (ft_strequ("-v", av[1]))
 	{
 		f->v = 1;
-		i++;
+		print_vflag_greeting();
+		i = 2;
 	}
 	while (av[i])
 	{
@@ -34,6 +35,7 @@ int				checkargs(int ac, char **av, t_flags *f)
 		}
 		i++;
 	}
+	f->count_a = i - 1;
 	return (1);
 }
 
@@ -42,20 +44,16 @@ void			checksort(char **av, t_listp *lists, t_flags *f, int c)
 	t_node		*a;
 	t_node		*b;
 
-	while (c > 1 && av[c - 1])
-	{
-		pushnode(lists, av[c - 1]);
-		c--;
-	}
+	while (c > f->v && av[c])
+		pushnode(lists, av[c--]);
 	if (!(lists->list_a))
 		return ;
-	f->count_a = lists->count_a;
-	f->count_b = lists->count_b;
 	a = lists->list_a;
 	b = lists->list_b;
-	if (c <= 5)
-		;//	do_smallsort(&a, &b, f);
+	if (f->count_a <= 5)
+		smallsort(&a, &b, f);
 	printa(a, f->count_a);
+	printa(b, f->count_b);
 	lists->count_a = f->count_a;
 	lists->count_b = f->count_b;
 }
@@ -64,26 +62,14 @@ int     		main(int ac, char **av)
 {
 	t_listp			lists;
 	t_flags			f;
-	int			count;
 
-	count = 1;
 	initstruct(&lists, &f);
 	if (checkargs(ac, av, &f))
 	{
-		if (f.v)
-		{
-			print_vflag_greeting();
-			count++;
-		}
-		if (av[count])
-		{
-			while (av[count])
-				count++;
-			checksort(av, &lists, &f, count);
-			freelist(lists.count_a, &(lists.list_a));
-			freelist(lists.count_b, &(lists.list_b));
-			return (0);
-		}
+		checksort(av, &lists, &f, f.count_a);
+		freelist(lists.count_a, &(lists.list_a));
+		freelist(lists.count_b, &(lists.list_b));
+		return (0);
 	}
 	return (1);
 }

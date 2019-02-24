@@ -12,7 +12,7 @@
 
 NAME = ../push_swap
 
-SRC = main.c lists.c commands.c
+SRC = main.c lists.c commands.c smallsort.c
 
 OBJ = $(SRC:.c=.o)
 

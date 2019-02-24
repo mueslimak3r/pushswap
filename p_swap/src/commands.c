@@ -1,20 +1,38 @@
 #include "../includes/p_swap.h"
 
-void			pushb(char *note, t_node **a, t_node **b, t_flags *f)
+t_node			*lst_pop(t_node **node)
+{
+	t_node		*temp;
+	
+	if ((*node)->next)
+		(*node)->next->last = 0;
+	temp = *node;
+	*node = (*node)->next;
+	temp->next = 0;
+	temp->last = 0;
+	return (temp);
+}
+
+void			lst_push(char *note, t_node **src, t_node **dst, t_flags *f)
 {
 	t_node		*temp;
 
-	ft_printf("%s\n", note);
-	(*a)->last->next = (*a)->next;
-	(*a)->next->last = (*a)->last;
-	temp = *a;
-	*a = (*a)->next;
-	temp->next = *b;
-	if (*b)
-		(*b)->last = temp;
-	f->count_b += 1;
-	f->count_a -= 1;
-	*b = temp;
+	ft_printf("%s", note);
+	temp = lst_pop(src);
+	temp->next = *dst;
+	if (*dst)
+		(*dst)->last = temp;
+	if (!(ft_strcmp("pb ", note)))
+	{
+		f->count_b += 1;
+		f->count_a -= 1;
+	}
+	else
+	{
+		f->count_a += 1;
+		f->count_b -= 1;
+	}
+	*dst = temp;
 }
 
 void			rotate_a(char *n, t_node **h, t_node *hp, t_flags *f)
@@ -63,14 +81,14 @@ void			rev_rotate_a(char *note, t_node **head, t_node *headp)
 	*head = temp;
 }
 
-void			swapnodes(t_node **list, t_node *next)
+void			swapnodes(t_node **list)
 {
+	t_node *temp;
 
-	(*list)->next = next->next;
-	(next)->next = *list;
-	(next)->last = (*list)->last;
-	if ((*list)->last && next)
-		(*list)->last->next = next;
-	(*list)->last = next;
-	*list = next;
+	temp = (*list)->next;
+	(*list)->next = temp->next;
+	temp->next = *list;
+	temp->last = 0;
+	(*list)->last = temp;
+	*list = temp;
 }
