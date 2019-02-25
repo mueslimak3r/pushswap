@@ -12,7 +12,7 @@
 
 NAME = ../checker
 
-SRC = main.c lists.c
+SRC = main.c lists.c commands.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -26,7 +26,7 @@ INC = -I ../includes/
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g# -fsanitize=address
 
 all: $(NAME)
 

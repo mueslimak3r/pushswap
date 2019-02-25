@@ -19,18 +19,13 @@ void	freelist(int size, t_node **head)
 {
 	t_node *swap;
 
-	swap = NULL;
 	while (*head && size > 0)
 	{
-		if (*head)
-		{
-			swap = *head;
-			*head = (*head)->next;
-			swap->next = 0;
-			swap->last = 0;
-			free (swap);
-			ft_printf("Done!\n");
-		}
+		swap = *head;
+		*head = (*head)->next;
+		swap->next = 0;
+		swap->last = 0;
+		free (swap);
 		size--;
 	}
 }

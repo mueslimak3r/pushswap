@@ -1,4 +1,4 @@
-#include "../includes/p_swap.h"
+#include "../includes/checkr.h"
 
 void			printa(t_node *a, int size)
 {
@@ -29,7 +29,6 @@ void			lst_push(char *note, t_node **src, t_node **dst, t_flags *f)
 {
 	t_node		*temp;
 
-	ft_printf("%s", note);
 	temp = lst_pop(src);
 	temp->next = *dst;
 	if (*dst)
@@ -52,12 +51,8 @@ void			rotate_a(char *n, t_node **h, t_node *hp, t_flags *f)
 	t_node	*temp;
 	t_node	*top;
 
-	ft_printf("%s", n);
-	if (f->v)
-	{
-		ft_printf("  ");
-		printa(*h, f->count_a);
-	}
+	if (n && f)
+		;
 	temp = hp;
 	top = hp;
 	*h = (*h)->next;
@@ -67,12 +62,6 @@ void			rotate_a(char *n, t_node **h, t_node *hp, t_flags *f)
 	temp->next = top;
 	top->next = 0;
 	top->last = temp;
-	if (f->v)
-	{
-		ft_printf("    ");
-		printa(*h, f->count_a);
-	}
-	ft_printf("\n");
 }
 
 void			rev_rotate_a(char *note, t_node **head, t_node *headp)
@@ -80,7 +69,8 @@ void			rev_rotate_a(char *note, t_node **head, t_node *headp)
 	t_node	*temp;
 	t_node	*top;
 
-	ft_printf("%s\n", note);
+	if (note)
+		;
 	temp = headp;
 	top = headp;
 	(*head)->last = 0;

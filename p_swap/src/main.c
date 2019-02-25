@@ -1,15 +1,5 @@
 #include "../includes/p_swap.h"
 
-void			printa(t_node *a, int size)
-{
-	while (a && size > 0)
-	{
-		ft_printf(((size != 1) ? ("%-4d") : ("%-4d\n")), a->nb);
-		a = a->next;
-		size--;
-	}
-}
-
 int				checkargs(int ac, char **av, t_flags *f)
 {
 	int			i;
@@ -41,19 +31,13 @@ int				checkargs(int ac, char **av, t_flags *f)
 
 void			checksort(char **av, t_listp *lists, t_flags *f, int c)
 {
-	t_node		*a;
-	t_node		*b;
-
 	while (c > f->v && av[c])
 		pushnode(lists, av[c--]);
 	if (!(lists->list_a))
 		return ;
-	a = lists->list_a;
-	b = lists->list_b;
-	if (f->count_a <= 5)
-		smallsort(&a, &b, f);
-	printa(a, f->count_a);
-	printa(b, f->count_b);
+	if (f->count_a <= 8)
+		smallsort(&(lists->list_a), &(lists->list_b), f);
+	//printa(lists->list_a, f->count_a);
 	lists->count_a = f->count_a;
 	lists->count_b = f->count_b;
 }

@@ -1,16 +1,5 @@
 #include "../includes/checkr.h"
 
-void			printa(t_node *a)
-{
-	while (a)
-	{
-		ft_printf("%d\n", a->nb);
-		if (a->nb == a->next->nb || a->nb > a->next->nb)
-			break ;
-		a = a->next;
-	}
-}
-
 void				checksolve(t_node *a, int count_a)
 {
 	int				count;
@@ -32,7 +21,7 @@ void				checksolve(t_node *a, int count_a)
 		ft_printf("KO\n");
 }
 
-void				checkrsort(t_listp *lists)
+void				checkrsort(t_listp *lists, t_flags *f)
 {
 	char			*args;
 
@@ -44,15 +33,26 @@ void				checkrsort(t_listp *lists)
 			lists->list_a = lists->list_a->next;
 		else if (ft_strequ("sa", args))
 		{
-			swapnodes(&(lists->list_a), lists->list_a->next);
-			lists->list_a = lists->list_a->last;
+			swapnodes(&(lists->list_a));
+		}
+		else if (ft_strequ("sb", args))
+		{
+			swapnodes(&(lists->list_b));
+		}
+		else if (ft_strequ("pb", args))
+		{
+			lst_push("pb", &(lists->list_a), &(lists->list_b), f);
+		}
+		else if (ft_strequ("pa", args))
+		{
+			lst_push("pa", &(lists->list_b), &(lists->list_a), f);
 		}
 		ft_strdel(&args);
 	}
 	checksolve(lists->list_a, lists->count_a);
 }
 
-int				    checkargs(int ac, char **av)
+int				    checkargs(int ac, char **av, int *c)
 {
 	int			i;
 
@@ -71,26 +71,32 @@ int				    checkargs(int ac, char **av)
 		}
 		i++;
 	}
+	*c = i - 1;
 	return (1);
 }
 
 int                 main(int ac, char **av)
 {
     t_listp			lists;
+	t_flags			f;
+	int				count;
+	int				count2;
 
-	initstruct(&lists);
-	if (checkargs(ac, av))
+	count = 0;
+	initstruct(&lists, &f);
+	if (checkargs(ac, av, &count))
 	{
-		if (*(++av))
+		count2 = count;
+		if (av[count])
 		{
-			pushnode(&lists, *(av++));
-			lists.tail_a = lists.list_a;
-			while (*av)
-				pushnode(&lists, *(av++));
+			while (av[count] && count > 0)
+			{
+				pushnode(&lists, av[count]);
+				count--;
+			}
 		}
-		lists.list_a->last = lists.tail_a;
-		lists.tail_a->next = lists.list_a;
-		checkrsort(&lists);
+		f.count_a = lists.count_a;
+		checkrsort(&lists, &f);
 		freelist(lists.count_a, &(lists.list_a));
 		freelist(lists.count_b, &(lists.list_b));
 		return (0);

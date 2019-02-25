@@ -17,12 +17,22 @@ void		sort_a(t_node **a, t_node **b, t_flags *f)
 	{
 		if ((*a)->nb < (*a)->next->nb)
 		{
-			lst_push("pb ", a, b, f);
+			//printa(*a, f->count_a);
+			//printa(*b, f->count_b);
+			lst_push("pb\n", a, b, f);
+			//printa(*a, f->count_a);
+			//printa(*b, f->count_b);
+			//ft_printf("\n");
 		}
 		else
 		{
+			//printa(*a, f->count_a);
+			//printa(*b, f->count_b);
 			swapnodes(a);
-			ft_putstr("sa ");
+			ft_putstr("sa\n");
+			//printa(*a, f->count_a);
+			//printa(*b, f->count_b);
+			//ft_printf("\n");
 		}
 	}
 }
@@ -33,16 +43,27 @@ void		sort_b(t_node **b, t_node **a, t_flags *f)
 	{
 		if (!(*b)->next || (*b)->nb > (*b)->next->nb)
 		{
+			//printa(*a, f->count_a);
+			//printa(*b, f->count_b);
 			lst_push("", b, a, f);
 			if (!(*b) && is_sorted(*a))
 				ft_putstr("pa\n");
 			else
-				ft_putstr("pa ");
+				ft_putstr("pa\n");
+			//printa(*a, f->count_a);
+			//printa(*b, f->count_b);
+			//ft_printf("\n");
 		}
 		else
 		{
+			//printa(*a, f->count_a);
+			//printa(*b, f->count_b);
+			//ft_printf("\n");
 			swapnodes(b);
-			ft_putstr("sb ");
+			ft_putstr("sb\n");
+			//printa(*a, f->count_a);
+			//printa(*b, f->count_b);
+			//ft_printf("\n");
 		}
 	}
 }
@@ -50,5 +71,5 @@ void		sort_b(t_node **b, t_node **a, t_flags *f)
 void        smallsort(t_node **a, t_node **b, t_flags *f)
 {
     sort_a(a, b, f);
-    sort_b(a, b, f);
+    sort_b(b, a, f);
 }
