@@ -64,15 +64,15 @@ void			rotate_a(char *n, t_node **h, t_node *hp, t_flags *f)
 	top->last = temp;
 }
 
-void			rev_rotate_a(char *note, t_node **head, t_node *headp)
+void			rev_rotate_a(char *note, t_node **head)
 {
 	t_node	*temp;
 	t_node	*top;
 
 	if (note)
 		;
-	temp = headp;
-	top = headp;
+	temp = head;
+	top = head ;
 	(*head)->last = 0;
 	while (temp->next)
 		temp = temp->next;

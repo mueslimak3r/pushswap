@@ -47,19 +47,14 @@ void			lst_push(char *note, t_node **src, t_node **dst, t_flags *f)
 	}
 }
 
-void			rotate_a(char *n, t_node **h, t_node *hp, t_flags *f)
+void			rotate(char *n, t_node **h, t_flags *f)
 {
 	t_node	*temp;
 	t_node	*top;
 
 	ft_printf("%s", n);
-	if (f->v)
-	{
-		ft_printf("  ");
-		printa(*h, f->count_a);
-	}
-	temp = hp;
-	top = hp;
+	temp = *h;
+	top = *h;
 	*h = (*h)->next;
 	(*h)->last = 0;
 	while (temp->next)
@@ -67,22 +62,16 @@ void			rotate_a(char *n, t_node **h, t_node *hp, t_flags *f)
 	temp->next = top;
 	top->next = 0;
 	top->last = temp;
-	if (f->v)
-	{
-		ft_printf("    ");
-		printa(*h, f->count_a);
-	}
-	ft_printf("\n");
 }
 
-void			rev_rotate_a(char *note, t_node **head, t_node *headp)
+void			rev_rotate(char *note, t_node **head)
 {
 	t_node	*temp;
 	t_node	*top;
 
 	ft_printf("%s\n", note);
-	temp = headp;
-	top = headp;
+	temp = *head;
+	top = *head;
 	(*head)->last = 0;
 	while (temp->next)
 		temp = temp->next;
