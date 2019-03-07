@@ -46,15 +46,14 @@ void			lst_push(char *note, t_node **src, t_node **dst, t_flags *f)
 	}
 }
 
-void			rotate_a(char *n, t_node **h, t_node *hp, t_flags *f)
+void			rotate(char *n, t_node **h)
 {
 	t_node	*temp;
 	t_node	*top;
 
-	if (n && f)
-		;
-	temp = hp;
-	top = hp;
+	ft_printf("%s", n);
+	temp = *h;
+	top = *h;
 	*h = (*h)->next;
 	(*h)->last = 0;
 	while (temp->next)
@@ -64,15 +63,14 @@ void			rotate_a(char *n, t_node **h, t_node *hp, t_flags *f)
 	top->last = temp;
 }
 
-void			rev_rotate_a(char *note, t_node **head)
+void			rev_rotate(char *note, t_node **head)
 {
 	t_node	*temp;
 	t_node	*top;
 
-	if (note)
-		;
-	temp = head;
-	top = head ;
+	ft_printf("%s", note);
+	temp = *head;
+	top = *head;
 	(*head)->last = 0;
 	while (temp->next)
 		temp = temp->next;

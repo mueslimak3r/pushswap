@@ -33,21 +33,7 @@ void			fill_b(t_node **a, t_node **b, t_flags *f)
 	}
 }
 
-int				checksort(t_node *head)
-{
-	int			count;
 
-	count = 0;
-	while (head && head->next)
-	{
-		if ((head)->nb > (head)->next->nb)
-			count += 1;
-		head = head->next;
-	}
-	if (count == 0)
-		return (1);
-	return (0);
-}
 
 void			do_smallsort(t_node **a, t_node **b, t_flags *f)
 {

@@ -36,7 +36,7 @@ void			checksort(char **av, t_listp *lists, t_flags *f, int c)
 	if (!(lists->list_a))
 		return ;
 	if (f->count_a <= 8)
-		smallsort(&(lists->list_a), &(lists->list_b), f);
+		sort(&(lists->list_a), &(lists->list_b), f);
 	printa(lists->list_a, f->count_a);
 	lists->count_a = f->count_a;
 	lists->count_b = f->count_b;

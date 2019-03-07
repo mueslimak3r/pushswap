@@ -47,7 +47,7 @@ void			lst_push(char *note, t_node **src, t_node **dst, t_flags *f)
 	}
 }
 
-void			rotate(char *n, t_node **h, t_flags *f)
+void			rotate(char *n, t_node **h)
 {
 	t_node	*temp;
 	t_node	*top;
@@ -69,7 +69,7 @@ void			rev_rotate(char *note, t_node **head)
 	t_node	*temp;
 	t_node	*top;
 
-	ft_printf("%s\n", note);
+	ft_printf("%s", note);
 	temp = *head;
 	top = *head;
 	(*head)->last = 0;
@@ -80,6 +80,17 @@ void			rev_rotate(char *note, t_node **head)
 	temp->next = top;
 	top->last = temp;
 	*head = temp;
+}
+
+int				checkifsort(t_node *head)
+{
+	while (head && head->next)
+	{
+		if ((head)->nb > (head)->next->nb)
+			return (0);
+		head = head->next;
+	}
+	return (1);
 }
 
 void			swapnodes(t_node **list)

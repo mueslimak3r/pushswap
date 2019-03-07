@@ -1,5 +1,11 @@
 #include "../includes/p_swap.h"
 
+void			fillb(t_node **a, t_node **b, t_flags *f)
+{
+	while (*a)
+		lst_push("pb\n", a, b, f);
+}
+
 void			pushnode(t_listp *lists, char *c_nbr)
 {
 	t_node		*new;
@@ -42,9 +48,9 @@ void			initstruct(t_listp *lists, t_flags *f)
 	f->count_b = 0;
 }
 
-int				check_nodes(t_node **current)
+int				check_nodes(t_node *current)
 {
-	if ((*current)->nb > (*current)->next->nb)
+	if (current->nb > current->next->nb)
 		return (1);
 	return (0);
 }

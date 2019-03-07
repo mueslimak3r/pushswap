@@ -30,7 +30,13 @@ void				checkrsort(t_listp *lists, t_flags *f)
 	{
 		ft_printf("%s\n", args);
 		if (ft_strequ("ra", args))
-			lists->list_a = lists->list_a->next;
+			rotate("ra\n", &(lists->list_a));
+		else if (ft_strequ("rra", args))
+			rev_rotate("rra\n", &(lists->list_a));
+		else if (ft_strequ("rb", args))
+			rotate("rb\n", &(lists->list_b));
+		else if (ft_strequ("rrb", args))
+			rev_rotate("rb\n", &(lists->list_b));
 		else if (ft_strequ("sa", args))
 		{
 			swapnodes(&(lists->list_a));
@@ -41,11 +47,11 @@ void				checkrsort(t_listp *lists, t_flags *f)
 		}
 		else if (ft_strequ("pb", args))
 		{
-			lst_push("pb", &(lists->list_a), &(lists->list_b), f);
+			lst_push("pb\n", &(lists->list_a), &(lists->list_b), f);
 		}
 		else if (ft_strequ("pa", args))
 		{
-			lst_push("pa", &(lists->list_b), &(lists->list_a), f);
+			lst_push("pa\n", &(lists->list_b), &(lists->list_a), f);
 		}
 		ft_strdel(&args);
 	}
